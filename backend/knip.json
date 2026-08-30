@@ -1,0 +1,8 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": ["prisma7.config.ts"],
+  "ignoreDependencies": ["@prisma/client", "pg", "@types/pg"],
+  "ignoreIssues": {
+    "src/lib/errors.ts": ["exports"]
+  }
+}
