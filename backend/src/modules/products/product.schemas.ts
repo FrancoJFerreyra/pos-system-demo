@@ -1,5 +1,11 @@
-import { populateQuerySchema } from "@/common/validations/common.schemas.js";
+import { createPopulateQuerySchema } from "@/common/validations/common.schemas.js";
 import { z } from "zod";
+
+const PRODUCT_POPULATE_ENTITIES = ["category"] as const
+
+const populateQuerySchema = createPopulateQuerySchema(
+  PRODUCT_POPULATE_ENTITIES
+)
 
 const nameSchema = z.string().trim().min(1).max(120);
 const skuSchema = z.string().trim().min(1).max(64);

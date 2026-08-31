@@ -1,5 +1,11 @@
-import { populateQuerySchema } from "@/common/validations/common.schemas.js";
+import { createPopulateQuerySchema } from "@/common/validations/common.schemas.js";
 import { z } from "zod";
+
+const CATEGORY_POPULATE_ENTITIES = ["products"] as const
+
+const populateQuerySchema = createPopulateQuerySchema(
+  CATEGORY_POPULATE_ENTITIES
+)
 
 export const createCategorySchema = z.object({
   name: z
@@ -19,6 +25,5 @@ export const updateCategorySchema = z.object({
 export const getByIdCategoryQuerySchema = populateQuerySchema;
 
 export const getAllCategoriesQuerySchema = z.object({
-  ...populateQuerySchema,
   name: z.string().optional(),
-});
+}).extend(populateQuerySchema.shape);
