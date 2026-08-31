@@ -6,6 +6,7 @@ export type CreateProductData = {
   name: string;
   price: number;
   sku: string;
+  taxRate: number;
 };
 
 export type UpdateProductData = {
@@ -14,6 +15,7 @@ export type UpdateProductData = {
   name?: string;
   price?: number;
   sku?: string;
+  taxRate?: number;
 };
 
 export type GetAllProductQuery = {
