@@ -56,61 +56,40 @@ Future modules will include:
 - npm or yarn.
 - Docker and Docker Compose.
 
-### Installation
+### Application Setup
 
-Clone the repository and install dependencies:
+Start the Frontend, Backend, and PostgreSQL containers using Docker Compose.
+
+**Development** (hot-reload enabled via bind mounts):
 
 ```bash
-# Frontend
-cd frontend
-npm install
-# or
-yarn install
-
-# Backend
-cd backend
-npm install
-# or
-yarn install
+docker compose up --build
 ```
 
-### Database Setup
-
-Start the PostgreSQL container using Docker Compose:
+**Production** (optimized builds, served via Nginx, detached mode):
 
 ```bash
-docker compose up -d
+docker compose -f docker-compose.yml up --build -d
 ```
 
-Run Prisma migrations:
+Once the containers are running:
+
+- Frontend (dev): `http://localhost:5173`
+- Frontend (production): `http://localhost`
+- Backend API: `http://localhost:3000`
+
+### Database Migrations
+
+Run Prisma migrations inside the running backend container:
 
 ```bash
-cd backend
-npx prisma migrate dev
-```
-
-### Running the Application
-
-Start the development servers:
-
-```bash
-# Frontend
-cd frontend
-npm run dev
-# or
-yarn dev
-
-# Backend
-cd backend
-npm run dev
-# or
-yarn dev
+docker compose exec backend npx prisma migrate dev
 ```
 
 The application will be available at:
 
-- Frontend: `http://localhost:3000` (or your configured port).
-- Backend: `http://localhost:4000` (or your configured port).
+- Frontend: `http://localhost:5173` (or your configured port).
+- Backend: `http://localhost:3000` (or your configured port).
 
 ## Project Structure
 
@@ -158,12 +137,12 @@ All API inputs are validated using **Zod** schemas to ensure type safety and dat
 
 The backend defines a hierarchy of errors in `backend/src/lib/errors.ts`, all extending `DomainError`:
 
-| Error | HTTP | When |
-| --- | --- | --- |
-| `ValidationError` | 400 | Request body or query fails Zod validation |
-| `ResourceNotFoundError` | 404 | A product or category ID does not exist |
-| `ForeignKeyConstraintError` | 400 | A product references a non-existent category |
-| `UniqueConstraintError` | 409 | Duplicate SKU or category name |
+| Error                       | HTTP | When                                         |
+| --------------------------- | ---- | -------------------------------------------- |
+| `ValidationError`           | 400  | Request body or query fails Zod validation   |
+| `ResourceNotFoundError`     | 404  | A product or category ID does not exist      |
+| `ForeignKeyConstraintError` | 400  | A product references a non-existent category |
+| `UniqueConstraintError`     | 409  | Duplicate SKU or category name               |
 
 Additional error types (e.g. connection failures, timeouts) are defined for future use.
 

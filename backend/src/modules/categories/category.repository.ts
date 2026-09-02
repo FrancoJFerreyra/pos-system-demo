@@ -1,5 +1,5 @@
 import { buildIncludeQuery } from "@/common/http/api-queries.js";
-import { CategoryWhereInput } from "../../../generated/prisma/models.js";
+import { CategoryWhereInput } from "@/generated/prisma/models.js";
 import { prisma } from "../../lib/prisma.js";
 import {
   GetAllCategoryQuery,
@@ -13,13 +13,13 @@ const buildWhereQuery = (
 ): CategoryWhereInput | {} =>
   query?.name
     ? {
-        where: {
-          name: {
-            contains: query.name,
-            mode: "insensitive",
-          },
+      where: {
+        name: {
+          contains: query.name,
+          mode: "insensitive",
         },
-      }
+      },
+    }
     : {};
 
 export const categoryRepository = {
