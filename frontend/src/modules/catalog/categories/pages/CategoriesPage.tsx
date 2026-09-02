@@ -4,6 +4,6 @@ const CategoriesPage = () => {
       <h1>Categories</h1>
     </div>
   );
-}
+};
 
 export default CategoriesPage;
