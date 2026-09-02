@@ -6,7 +6,8 @@ import {
   GetByIdProductQuery,
   UpdateProductData,
 } from "./product.types.js";
-import { ProductWhereInput } from "../../../generated/prisma/models.js";
+import { ProductWhereInput } from "@/generated/prisma/models.js";
+
 
 function buildWhereQuery(query: GetAllProductQuery): ProductWhereInput {
   const where: ProductWhereInput = {};
