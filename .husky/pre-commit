@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+echo "Running lint-staged for backend..."
+cd backend && yarn lint-staged
+if [ $? -ne 0 ]; then exit 1; fi
+
+echo "Running lint-staged for frontend..."
+cd ../frontend && yarn lint-staged
