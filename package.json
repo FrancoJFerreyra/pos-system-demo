@@ -1,0 +1,14 @@
+{
+  "name": "POS-SYSTEM",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/FrancoJFerreyra/pos-system-demo.git",
+  "author": "Franco Ferreyra <ferreyrafranco0802@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}

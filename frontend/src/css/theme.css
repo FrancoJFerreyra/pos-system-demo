@@ -167,5 +167,5 @@
   --radius-card: var(--radius-lg);
   --radius-sell-card: var(--radius-2xl);
 
-  --spacing-input: theme('spacing.14');
+  --spacing-input: theme("spacing.14");
 }

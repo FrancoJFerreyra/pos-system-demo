@@ -15,21 +15,21 @@ const router = createBrowserRouter([
     element: <ProductsPage />,
     children: [
       {
-        path: '/:id',
+        path: "/:id",
         element: <ProductItemPage />,
-      }
-    ]
+      },
+    ],
   },
   {
     path: "/categories",
     element: <CategoriesPage />,
     children: [
       {
-        path: '/:id',
+        path: "/:id",
         element: <CategoryItemPage />,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ]);
 
 export default router;
